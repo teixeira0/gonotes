@@ -201,18 +201,18 @@
     </head>
     <body>
     	 <script type="text/javascript">
+    	 	let HOST = location.origin.replace(/^http/, 'ws')
 	        var sock = null;
-	        var wsuri = "ws://127.0.0.1:8080/new";
 	        var notes = [];
 
 	        window.onload = function() {
 
 	            console.log("onload");
 
-	            sock = new WebSocket(wsuri);
+	            sock = new WebSocket(HOST);
 
 	            sock.onopen = function() {
-	                console.log("connected to " + wsuri);
+	                console.log("connected to " + HOST);
 	                sock.send("Refresh");
 	            }
 

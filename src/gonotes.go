@@ -131,6 +131,11 @@ func loadPage(title string) (*Page, error) {
 }
 
 func main() {
+    port := os.Getenv("PORT")
+
+    if port == "" {
+        log.Fatal("$PORT must be set")
+    }
 
 	db, err := sql.Open("mysql", "bfac529c4e00a7:2b5adff2@tcp(us-cdbr-east-03.cleardb.com:3306)/heroku_94ecc8b16e3723c")
 	if err != nil {
@@ -141,5 +146,5 @@ func main() {
 	
     http.HandleFunc("/gonotes", homeHandler)
     http.Handle("/new", websocket.Handler(noteSocketHandler))
-    log.Fatal(http.ListenAndServe(":8080", nil))
+    log.Fatal(http.ListenAndServe(":port", nil))
 }
