@@ -146,5 +146,5 @@ func main() {
 	
     http.HandleFunc("/gonotes", homeHandler)
     http.Handle("/new", websocket.Handler(noteSocketHandler))
-    log.Fatal(http.ListenAndServe(":port", nil))
+    log.Fatal(http.ListenAndServe(":" + port, nil))
 }
